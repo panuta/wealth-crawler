@@ -1,0 +1,6 @@
+cron:
+- description: "Crawl Mutual Fund"
+  url: /crawl/mutual_fund/daily/
+  schedule: every day 01:00
+  timezone: Asia/Bangkok
+  target: crawler
