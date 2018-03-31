@@ -13,19 +13,19 @@ from main import app
 
 
 class MutualFundNav(ndb.Model):
-    fund_manager = ndb.StringProperty()
+    fund_manager = ndb.StringProperty(indexed=False)
     fund_code = ndb.StringProperty()
-    fund_name_th = ndb.StringProperty()
-    fund_name_en = ndb.StringProperty()
+    fund_name_th = ndb.StringProperty(indexed=False)
+    fund_name_en = ndb.StringProperty(indexed=False)
 
     nav_date = ndb.DateProperty()
-    nav = ndb.FloatProperty()
-    total_nav = ndb.FloatProperty()
+    nav = ndb.FloatProperty(indexed=False)
+    total_nav = ndb.FloatProperty(indexed=False)
 
-    bid_price = ndb.FloatProperty()
-    offer_price = ndb.FloatProperty()
+    bid_price = ndb.FloatProperty(indexed=False)
+    offer_price = ndb.FloatProperty(indexed=False)
 
-    raw = ndb.TextProperty()
+    raw = ndb.TextProperty(indexed=False)
 
 
 def _to_thai_date(d):
