@@ -100,7 +100,7 @@ def crawl_mutual_fund_task():
             else:
                 shift = 0
                 from_date_day, from_date_month, from_date_year = from_date_param.split('/')
-                nav_date = date(from_date_year - 543, from_date_month, from_date_day)
+                nav_date = date(int(from_date_year) - 543, int(from_date_month), int(from_date_day))
 
             fund_manager = response_csv[2 + shift]
             fund_code = response_csv[6 + shift]
