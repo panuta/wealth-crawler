@@ -23,26 +23,24 @@ def crawl_mutual_fund_by_period():
     to_date = request.args.get('to')
 
     if not from_date or not to_date:
-        abort(400)
+        return abort(400)
 
     else:
         try:
             from_date = datetime.strptime(from_date, '%Y-%m-%d').date()
         except ValueError:
             logging.exception('Error parsing from date')
-            abort(400)
-            return  # Unnecessary but add it here to be nice with IDE
+            return abort(400)
 
         try:
             to_date = datetime.strptime(to_date, '%Y-%m-%d').date()
         except ValueError:
             logging.exception('Error parsing to date')
-            abort(400)
-            return
+            return abort(400)
 
         if from_date > to_date:
             logging.exception('From date is later than to date')
-            abort(400)
+            return abort(400)
 
         for date_tuple in split_date_period(from_date, to_date):
             taskqueue.add(url='/task/crawl/mutual_fund/', params={

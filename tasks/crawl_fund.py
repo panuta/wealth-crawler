@@ -1,7 +1,7 @@
 import csv
 import logging
 import re
-from datetime import datetime, date, timedelta
+from datetime import datetime, date
 
 from dateutil.relativedelta import *
 from flask import request, Response, abort
@@ -56,7 +56,6 @@ def crawl_mutual_fund_task():
     to_date_param = request.form.get('to')
 
     base_url = 'https://www.thaimutualfund.com/AIMC/aimc_navCenterDownloadRepRep.jsp'
-    urls = []
 
     if from_date_param and to_date_param:
         url = '{base_url}?date1={date1}&date2={date2}'.format(
@@ -152,7 +151,7 @@ def crawl_mutual_fund_task():
 
     except urlfetch.Error:
         logging.exception('urlfetch error')
-        abort(400)
+        return abort(400)
 
     context = ndb.get_context()
     context.clear_cache()
