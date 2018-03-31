@@ -72,7 +72,7 @@ def crawl_mutual_fund_task():
 
         if result.status_code != 200:
             logging.exception('Error with status code {}'.format(result.status_code))
-            abort(result.status_code)
+            return abort(result.status_code)
 
         put_multi_items = []
 
